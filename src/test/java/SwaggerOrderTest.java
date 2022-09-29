@@ -1,5 +1,3 @@
-package org;
-
 import java.util.Random;
 
 import static io.restassured.RestAssured.*;
@@ -21,7 +19,7 @@ public class SwaggerOrderTest {
     int defunctId = 2707; // несущестующий id
 
     @BeforeAll
-    static void setUp() {
+    public static void setUp() {
         RestAssured.requestSpecification = new RequestSpecBuilder()
                 .setBaseUri(Endpoints.host + Endpoints.orderBasePath)
                 .setAccept(ContentType.JSON)
