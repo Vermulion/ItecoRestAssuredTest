@@ -82,4 +82,28 @@ public class SwaggerOrderTest {
                 when().get(Endpoints.order + Endpoints.orderId).
                 then().log().body().assertThat().body("message", oneOf("Order not found"));
     }
+
+    //Тесты для ТЗ
+    @Test
+    @DisplayName("Удалить созданный заказ")
+    public void deleteExistingOrder() {
+        Order order = randomOrder();
+        createOrder(order);
+        given().pathParam("id", order.getId())
+                .delete(Endpoints.order + Endpoints.orderId)
+                .then()
+                .statusCode(200);
+               // .extract().body().as(Order.class);
+        }
+
+    @Test
+    @DisplayName("Удалить несуществующий заказ")
+    public void deleteNonExistingOrder() {
+        Order order = randomOrder();
+        createOrder(order);
+        given().pathParam("id", defunctId)
+                .delete(Endpoints.order + Endpoints.orderId)
+                .then()
+                .statusCode(404);
+    }
 }
