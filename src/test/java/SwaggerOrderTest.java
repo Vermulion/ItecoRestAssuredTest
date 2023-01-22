@@ -93,8 +93,7 @@ public class SwaggerOrderTest {
                 .delete(Endpoints.order + Endpoints.orderId)
                 .then()
                 .statusCode(200);
-               // .extract().body().as(Order.class);
-        }
+    }
 
     @Test
     @DisplayName("Удалить несуществующий заказ")
